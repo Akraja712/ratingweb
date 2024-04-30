@@ -3,16 +3,18 @@ session_start();
 ob_start();
 
 $servername = "localhost";
-$username = "u743445510_ratings_job";
-$password = "Ratingsjobs@2024";
-$database = "u743445510_ratings_job";
+$username = "root";
+$password = "";
+$database = "ratingsjobs";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
-
+if(isset($_GET['refer_code'])) {
+    $_SESSION['refer_code'] = $_GET['refer_code']; // Store the refer code in session
+}
 function generateDeviceID()
 {
     return uniqid(); 
@@ -241,7 +243,7 @@ if (isset($_POST['btnSignup'])) {
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-book"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="referred_by" name="referred_by" placeholder="Referral Code" required style="border-left: none;">
+                        <input type="text" class="form-control" id="referred_by" name="referred_by" placeholder="Refer Code" style="border-left: none;" value="<?php echo isset($_SESSION['refer_code']) ? $_SESSION['refer_code'] : ''; ?>" <?php echo isset($_SESSION['refer_code']) ? 'readonly' : ''; ?>>
                     </div>
                 </div>
                 <div class="form-group">
