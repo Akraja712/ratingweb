@@ -3,9 +3,9 @@ session_start();
 ob_start();
 
 $servername = "localhost";
-$username = "root";
-$password = "";
-$database = "ratingsjobs";
+$username = "u743445510_ratings_job";
+$password = "Ratingsjobs@2024";
+$database = "u743445510_ratings_job";
 
 $conn = new mysqli($servername, $username, $password, $database);
 
