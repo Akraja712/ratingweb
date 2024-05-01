@@ -243,7 +243,7 @@ if (isset($_POST['btnSignup'])) {
                         <div class="input-group-prepend">
                             <span class="input-group-text" style="border-right: none; background: transparent;"><i class="fas fa-book"></i></span>
                         </div>
-                        <input type="text" class="form-control" id="referred_by" name="referred_by" placeholder="Refer Code" style="border-left: none;" value="<?php echo $refer_code; ?>" <?php echo $refer_code ? 'readonly' : ''; ?>>
+                        <input type="text" class="form-control" id="referred_by" name="referred_by" placeholder="Refer Code" style="border-left: none;" value="<?php echo $refer_code; ?>"; ?>
                     </div>
                 </div>
                 <div class="form-group">
