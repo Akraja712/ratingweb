@@ -72,7 +72,7 @@
 
                         if ($result && $result->num_rows > 0) {
                             $row = $result->fetch_assoc();
-                            $file_path = "https://ratingsjob.graymatterworks.com/upload/files/"; // Replace with your actual URL
+                            $file_path = "https://ratingsweb.graymatterworks.com/upload/files/"; // Replace with your actual URL
                             echo "<a href='$file_path' download><button class='btn btn-primary btn-custom' style='background-color:#fed346; color:white; font-weight:bold;'>Download App Now</button></a>";
                         } else {
                             echo "<p>No app file available for download.</p>";
