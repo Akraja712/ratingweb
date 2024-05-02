@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,9 +14,9 @@
             margin: 0;
         }
         body {
-        font-family: 'Poppins', Arial, sans-serif;
-        background: #efefef;
-    }
+            font-family: 'Poppins', Arial, sans-serif;
+            background: #efefef;
+        }
         .custom-container {
             width: 450px; 
             margin: 10px auto; /* Adjusted margin */
@@ -31,12 +30,10 @@
             margin-top:25px;
             border-radius: 10px;
             border: 2px solid #fed346;
-            
         }
         .btn-customs {
             width: 100%;
             border-radius: 15px;
-           
         }
         @media (max-width: 576px) {
             .nowrap-mobile {
@@ -44,14 +41,11 @@
                 font-size: 10px;
             }
             .btn-customs {
-            width: 100%;
-            border-radius: 15px;
-            margin-top:6px;
-           
+                width: 100%;
+                border-radius: 15px;
+                margin-top:6px;
+            }
         }
-     
-        }
-
     </style>
 </head>
 <body>
@@ -59,10 +53,31 @@
         <div class="custom-container">
             <center><img src="ratings.jpeg" alt="App Image" class="img-fluid"></center>
             <div class="form-group">
-                <button type="submit" class="btn btn-primary btn-custom" style="background-color:#fed346; color:white; font-weight:bold;">Download App Now</button>
+                <?php
+                $servername = "localhost";
+                $username = "u743445510_ratings_job";
+                $password = "Ratingsjobs@2024";
+                $database = "u743445510_ratings_job";
+
+                $conn = new mysqli($servername, $username, $password, $database);
+
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
+                $sql_query = "SELECT file_upload FROM app_settings WHERE id = 1";
+                $result = $conn->query($sql_query);
+
+                if ($result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $file_path = $row['file_upload'];
+                    echo "<a href='$file_path' download><button class='btn btn-primary btn-custom' style='background-color:#fed346; color:white; font-weight:bold;'>Download App Now</button></a>";
+                } else {
+                    echo "<p>No app file available for download.</p>";
+                }
+                $conn->close();
+                ?>
             </div>
         </div>
     </div>
 </body>
-
 </html>
