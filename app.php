@@ -54,33 +54,32 @@
             <center><img src="ratings.jpeg" alt="App Image" class="img-fluid"></center>
             <div class="form-group">
                 <?php
-                   $servername = "localhost";
-                   $username = "u743445510_ratings_job";
-                   $password = "Ratingsjobs@2024";
-                   $database = "u743445510_ratings_job";
+                $servername = "localhost";
+                $username = "u743445510_ratings_job";
+                $password = "Ratingsjobs@2024";
+                $database = "u743445510_ratings_job";
 
-                    $conn = new mysqli($servername, $username, $password, $database);
+                $conn = new mysqli($servername, $username, $password, $database);
 
-                    if ($conn->connect_error) {
-                        die("Connection failed: " . $conn->connect_error);
-                    }
+                if ($conn->connect_error) {
+                    die("Connection failed: " . $conn->connect_error);
+                }
 
-                    // Query to get file path from app_settings table
-                   // Query to get file path from app_settings table
-                        $sql_query = "SELECT file_upload FROM app_settings WHERE id = 1";
-                        $result = $conn->query($sql_query);
+                // Query to get file path from app_settings table
+                $sql_query = "SELECT file_upload FROM app_settings WHERE id = 1";
+                $result = $conn->query($sql_query);
 
-                        if ($result && $result->num_rows > 0) {
-                            $row = $result->fetch_assoc();
-                            $file_path = "https://ratingsweb.graymatterworks.com/upload/files/"; // Replace with your actual URL
-                            echo "<a href='$file_path' download><button class='btn btn-primary btn-custom' style='background-color:#fed346; color:white; font-weight:bold;'>Download App Now</button></a>";
-                        } else {
-                            echo "<p>No app file available for download.</p>";
-                        }
+                if ($result && $result->num_rows > 0) {
+                    $row = $result->fetch_assoc();
+                    $file_path = $row['file_upload'];
+                    $absolute_url = "https://ratingsjob.graymatterworks.com/" . $file_path; // Replace 'localhost/ratings_job/' with your actual directory path
+                    echo "<a href='$absolute_url' download><button class='btn btn-primary btn-custom' style='background-color:#fed346; color:white; font-weight:bold;'>Download App Now</button></a>";
+                } else {
+                    echo "<p>No app file available for download.</p>";
+                }
 
-
-                    // Close connection
-                    $conn->close();
+                // Close connection
+                $conn->close();
                 ?>
             </div>
         </div>
