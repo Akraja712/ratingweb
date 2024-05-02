@@ -64,16 +64,24 @@
                 if ($conn->connect_error) {
                     die("Connection failed: " . $conn->connect_error);
                 }
+
+                // Query to get file path from app_settings table
                 $sql_query = "SELECT file_upload FROM app_settings WHERE id = 1";
                 $result = $conn->query($sql_query);
 
                 if ($result->num_rows > 0) {
                     $row = $result->fetch_assoc();
-                    $file_path = $row['file_upload'];
-                    echo "<a href='$file_path' download><button class='btn btn-primary btn-custom' style='background-color:#fed346; color:white; font-weight:bold;'>Download App Now</button></a>";
+                    $file_path = 'upload/files/' . $row['file_upload'];
+                    if (file_exists($file_path)) {
+                        echo "<a href='$file_path' download><button class='btn btn-primary btn-custom' style='background-color:#fed346; color:white; font-weight:bold;'>Download App Now</button></a>";
+                    } else {
+                        echo "<p>File not found.</p>";
+                    }
                 } else {
                     echo "<p>No app file available for download.</p>";
                 }
+
+                // Close connection
                 $conn->close();
                 ?>
             </div>
